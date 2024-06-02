@@ -14,10 +14,12 @@ const {
   const chalk = require("chalk")
   const path = require("path")
   const process = require("process")
+  const {nanoid} = require("nanoid")
   
   task("func-request", "Initiates an on-demand request from a Functions consumer contract")
     .addParam("contract", "Address of the consumer contract to call")
     .addParam("subid", "Billing subscription ID used to pay for the request")
+    .addParam("flowid", "Flow ID of the request")
     .addOptionalParam(
       "simulate",
       "Flag indicating if source JS should be run locally before making an on-chain request",
@@ -49,6 +51,9 @@ const {
       const subscriptionId = parseInt(taskArgs.subid)
       const slotId = parseInt(taskArgs.slotid)
       const callbackGasLimit = parseInt(taskArgs.callbackgaslimit)
+      const flowId = taskArgs.flowid
+      const taskId = nanoid(25)
+      console.log("generated task id:", taskId)
   
       // Attach to the FunctionsConsumer contract
       const consumerFactory = await ethers.getContractFactory("FunctionsConsumer")
@@ -193,7 +198,7 @@ const {
         requestConfig.source,
         requestConfig.secretsLocation,
         encryptedSecretsReference,
-        requestConfig.args ?? [],
+        [flowId, taskId] ?? requestConfig.args ,
         requestConfig.bytesArgs ?? [],
         subscriptionId,
         callbackGasLimit,

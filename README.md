@@ -74,7 +74,7 @@ Functions enable you to make requests via the consumer contract. Before requesti
 
 You may do this programmatically with: <br/>
 ```
-npx hardhat func-request --network <NETWORK_NAME> --contract <CONSUMER_ADDRESS> --subid <SUBSCRIPTION_ID>
+npx hardhat func-request --network <NETWORK_NAME> --contract <CONSUMER_ADDRESS> --subid <SUBSCRIPTION_ID> --flowid <FLOW_ID> --taskid <TASK_ID>
 ``` 
 
 You will see a confirmation request, so hit `Y` and press enter. 

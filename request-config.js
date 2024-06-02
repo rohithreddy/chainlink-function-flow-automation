@@ -11,20 +11,20 @@ const requestConfig = {
     secretsLocation: Location.DONHosted,
     
     // source code to be executed
-    source: fs.readFileSync("./ai-request.js").toString(),
+    source: fs.readFileSync("./chain-fun.js").toString(),
 
     // (optional) accessed within the source code with `secrets.varName` (ie: secrets.apiKey), must be a string.
     secrets: { 
-        apiKey: process.env.OPENAI_KEY
+        flowKey: process.env.FLOW_KEY
     },
 
     // args (array[""]): source code accesses via `args[index]`.
     args: [
-        "bitcoin",          // token id             [0]
-        "d1",               // interval             [1]
-        "6",                // precision            [2]
-        "naive",            // forecast method      [3]
-        "30",               // historical days      [4]
+        "ueo9wvx5ezm57d73ll82o9h2v",          // flow id             [0]
+        // "data:[1,2,4]",               // interval             [1]
+        // "6",                // precision            [2]
+        // "naive",            // forecast method      [3]
+        // "30",               // historical days      [4]
     ],
 
     // code language (JavaScript only)

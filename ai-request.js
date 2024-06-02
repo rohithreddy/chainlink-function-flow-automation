@@ -50,7 +50,7 @@ No explanation. Only report a float number with no dollar sign and no context.`
 // [5] AI DATA REQUEST //
 
 // requests: OpenAI API using Functions
-const openAIRequest = await Functions.makeHttpRequest({
+const geminiRequest = await Functions.makeHttpRequest({
     // url: URL of the API endpoint (required)
     url: `https://api.openai.com/v1/chat/completions`,
     // defaults to 'GET' (optional)
@@ -85,7 +85,7 @@ const openAIRequest = await Functions.makeHttpRequest({
     responseType: "json"
 })
 
-const response = await openAIRequest
+const response = await geminiRequest
 
 // finds: the response and returns the result (as a string).
 const stringResult = response.data?.choices[0].message.content

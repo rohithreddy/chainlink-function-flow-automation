@@ -14,6 +14,24 @@ contract FunctionsConsumer is FunctionsClient, ConfirmedOwner {
     // DON ID for the Functions DON to which the requests are sent
     bytes32 public donId;
 
+    struct Notification {
+        string flowid;
+        string alertid;
+        string data;
+        uint256 timestamp;
+    }
+ 
+    struct Subscription {
+    address subscriber;
+    uint256 balance;
+    uint256 lastPaymentTimestamp;
+}
+
+mapping(address => Subscription) public subscriptions;
+
+    uint256 public subscriptionPrice = 0.00108 ether;
+
+    // private mapping (address => Notification) name;
     //////////////////////////// [D] ////////////////////////////
 
     // reports: latestForecast response.
@@ -38,12 +56,25 @@ contract FunctionsConsumer is FunctionsClient, ConfirmedOwner {
         donId = _donId;
     }
 
+    modifier isSubscribed() {
+        require(subscriptions[msg.sender].balance > 0, "Subscription required");
+        _;
+    }
     /**
      * @notice Set the DON ID
      * @param newDonId New DON ID
      */
     function setDonId(bytes32 newDonId) external onlyOwner {
         donId = newDonId;
+    }
+
+    function subscribe() public payable {
+        require(msg.value >= subscriptionPrice, "Insufficient funds");
+
+        Subscription storage subscription = subscriptions[msg.sender];
+        subscription.subscriber = msg.sender;
+        subscription.balance += msg.value;
+        subscription.lastPaymentTimestamp = block.timestamp;
     }
 
     /**
