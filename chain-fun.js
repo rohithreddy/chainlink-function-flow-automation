@@ -1,6 +1,6 @@
 const flow = await Functions.makeHttpRequest({ 
-    // url: `https://flow.hydragpt.xyz/api/chainfun`,
-    url: `http://localhost:3000/api/chainfun`,
+    url: `https://flow.hydragpt.xyz/api/chainfun`,
+    // url: `http://localhost:3000/api/chainfun`,
 
     // "Flow-API-Key": `${secrets.flowKey}`,
     method: "POST",
