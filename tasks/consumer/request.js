@@ -20,6 +20,7 @@ const {
     .addParam("contract", "Address of the consumer contract to call")
     .addParam("subid", "Billing subscription ID used to pay for the request")
     .addParam("flowid", "Flow ID of the request")
+    .addParam("command", "Command to send to the consumer contract")
     .addOptionalParam(
       "simulate",
       "Flag indicating if source JS should be run locally before making an on-chain request",
@@ -53,7 +54,10 @@ const {
       const callbackGasLimit = parseInt(taskArgs.callbackgaslimit)
       const flowId = taskArgs.flowid
       const taskId = nanoid(25)
+      const command = taskArgs.command
+      console.log("INSIDE REQUEST", command)
       console.log("generated task id:", taskId)
+      console.log("flow id ", flowId)
   
       // Attach to the FunctionsConsumer contract
       const consumerFactory = await ethers.getContractFactory("FunctionsConsumer")
@@ -198,7 +202,7 @@ const {
         requestConfig.source,
         requestConfig.secretsLocation,
         encryptedSecretsReference,
-        [flowId, taskId] ?? requestConfig.args ,
+        [flowId, taskId, command] ?? requestConfig.args,
         requestConfig.bytesArgs ?? [],
         subscriptionId,
         callbackGasLimit,
