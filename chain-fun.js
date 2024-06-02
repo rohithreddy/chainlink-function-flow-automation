@@ -23,7 +23,7 @@ console.log(resp)
 // && resp.data.message === "flow completed"
 // console.log("ARGS", args)
 if (resp.status != 200 ) {
-    return "Error Occured",resp
+    return "Error Occured"+resp.toString()
 }
 else{
     return Functions.encodeString(resp.status.toString()+"|"+resp.data.message.toString())
