@@ -4,7 +4,7 @@ In this workshop, we will build a price forecast to help inform the direction of
 ## Getting Started
 - [Install Foundry and Rust](/docs/INSTALL.md)
 - [Foundry Guide](/docs/FOUNDRY.md)
-- [OpenAI API Key](https://platform.openai.com/api-keys)
+- [ChainFlow API Key](https://flow.hydragpt.xyz/docs)
 
 ## Overview of Functions
 Chainlink functions enables you to leverage the power of a decentralized oracle network (DON) to execute external function calls (off-chain) to inform on-chain interactions.
@@ -40,7 +40,7 @@ After running the command, you'll be prompted to enter the following for each va
 - **Value**: your (*unencrypted*) environment variable (*secret*).
 
 For this demonstration, you will need to add the following to your encrypted environment variables:
-- `OPENAI_KEY`
+- `FLOW_KEY`
 - `PRIVATE_KEY`
 - `ETHERSCAN_API_KEY`
 
